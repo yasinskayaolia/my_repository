@@ -45,4 +45,12 @@ public class GroupHelPer extends HelperBase {
   public void submitGroupModification() {
     click(By.name("update"));
   }
+
+  public void checkContact() {
+    click(By.id("3"));
+  }
+
+  public void deleteContact() {
+    click(By.xpath("//input[@value='Delete']"));
+  }
 }
