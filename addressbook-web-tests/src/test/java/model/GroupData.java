@@ -1,4 +1,4 @@
-package ua.stqa.pft.addressbook;
+package model;
 
 public class GroupData {             // это объект, у коорого три атрибута
   private final String name;         //1
