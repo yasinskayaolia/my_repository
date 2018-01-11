@@ -7,7 +7,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class GroupHelPer extends HelperBase {
 
-  public GroupHelPer(WebDriver wd) {
+   public GroupHelPer(WebDriver wd) {
     super(wd);
   }
 

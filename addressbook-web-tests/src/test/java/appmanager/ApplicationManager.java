@@ -1,18 +1,18 @@
 package appmanager;
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import org.openqa.selenium.remote.BrowserType;
+import tests.TestBase;
 
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
 
-public class ApplicationManager {
-  WebDriver wd;
+public class ApplicationManager extends TestBase {
 
 
+  private ContactHelper contactHelper;
   private SessionHelper sessionHelper;
   private NavigatorHelper navigatorHelper;
   private GroupHelPer groupHelPer;
@@ -33,6 +33,7 @@ public class ApplicationManager {
     }
     wd.manage().timeouts().implicitlyWait(60, TimeUnit.SECONDS);
     wd.get("http://localhost:8080/addressbook/");
+    contactHelper = new ContactHelper(wd);
     groupHelPer = new GroupHelPer(wd);
     navigatorHelper = new NavigatorHelper(wd);
     sessionHelper = new SessionHelper(wd);
@@ -50,5 +51,13 @@ public class ApplicationManager {
 
   public NavigatorHelper getNavigatorHelper() {
     return navigatorHelper;
+  }
+
+  public ContactHelper getContactHelper() {
+    return contactHelper;
+  }
+
+  public void setContactHelper(ContactHelper contactHelper) {
+    this.contactHelper = contactHelper;
   }
 }

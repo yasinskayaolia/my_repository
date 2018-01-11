@@ -1,6 +1,8 @@
 package tests;
 
 import appmanager.ApplicationManager;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -11,6 +13,7 @@ import org.testng.annotations.BeforeMethod;
 public class TestBase {
 
   protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  public WebDriver wd;
 
   @BeforeMethod
   public void setUp() throws Exception {
