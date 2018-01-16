@@ -1,9 +1,14 @@
 package appmanager;
 
+import model.ContactData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.support.ui.Select;
+
+import java.util.concurrent.TimeUnit;
 
 public class HelperBase {
     protected WebDriver wd;
@@ -19,7 +24,7 @@ public class HelperBase {
   protected void type(By locator, String text) {
     click(locator);
     if (text != null) {
-      String existingText = wd.findElement(locator).getAttribute("value");
+      String existingText = wd.findElement(locator).getAttribute("value");  // тот текст, который мы видим в поле ввода, это не текст, это значение аттрибута value
       if (! text.equals(existingText)) {
         wd.findElement(locator).clear();
         wd.findElement(locator).sendKeys(text);
@@ -48,4 +53,29 @@ public class HelperBase {
     }
   }
 
+
+  public void submitContactData() {
+    wd.findElement(By.name("submit")).click();
+  }
+
+  protected boolean isElementPresent(By locator) {      // метод для проверки наличия или отсутствия элемента
+    try {
+      wd.findElement(locator);
+      return true;
+  } catch (NoSuchElementException ex) {
+      return false;
+    }
+  }
+
+  public void editContact() {
+    editContactData();
+  }
+
+  public void editContactData() {
+    wd.findElement(By.xpath("//a[@href='edit.php?id=3']")).click();
+  }
+
+  public void waitElement() {
+    wd.manage().timeouts().pageLoadTimeout(15, TimeUnit.SECONDS);
+  }
 }

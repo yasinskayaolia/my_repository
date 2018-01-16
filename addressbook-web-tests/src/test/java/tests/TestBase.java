@@ -12,9 +12,10 @@ import org.testng.annotations.BeforeMethod;
 
 public class TestBase {
 
-  protected final ApplicationManager app = new ApplicationManager(BrowserType.CHROME);
+  // Делаем ссылку на ApplicationManager общей для всех тестов. Для этого её нужно объявить static. Переменная static становится независимой,
+// она не является частью какого-то объекта. Это самостоятельная глобальная переменная.
+  protected static final ApplicationManager app = new ApplicationManager(BrowserType.FIREFOX);
   public WebDriver wd;
-
   @BeforeMethod
   public void setUp() throws Exception {
     app.init();
@@ -25,5 +26,4 @@ public class TestBase {
   public void tearDown() {
     app.stop();
   }
-
 }
