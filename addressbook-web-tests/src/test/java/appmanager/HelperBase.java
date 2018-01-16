@@ -72,7 +72,7 @@ public class HelperBase {
   }
 
   public void editContactData() {
-    wd.findElement(By.xpath("//a[@href='edit.php?id=3']")).click();
+    wd.findElement(By.xpath("//a[contains(@href,'edit.php?id')]")).click();
   }
 
   public void waitElement() {

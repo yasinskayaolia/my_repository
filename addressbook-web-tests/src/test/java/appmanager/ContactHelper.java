@@ -2,7 +2,6 @@ package appmanager;
 
 import model.ContactData;
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
@@ -32,7 +31,7 @@ public class ContactHelper extends HelperBase {
   }
 
   public void addContact() {
-    wd.findElement(By.xpath("//a[@href='edit.php']")).click();
+    wd.findElement(By.linkText("add new")).click();
   }
 
   private void submitContact() {
@@ -46,4 +45,13 @@ public class ContactHelper extends HelperBase {
     click(By.name("update"));
   }
 
+  public void createContact(ContactData contactData, boolean creation) {
+   initContactForm();
+   fillContactFields(contactData, creation);
+   submitContactData();
+  }
+
+  public boolean isThereAContact() {
+    return isElementPresent(By.xpath("//a[contains(@href,'edit.php?id')]"));
+  }
 }
