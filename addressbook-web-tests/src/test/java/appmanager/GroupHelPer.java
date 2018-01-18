@@ -3,7 +3,11 @@ package appmanager;
 import model.GroupData;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class GroupHelPer extends HelperBase {
 
@@ -33,10 +37,8 @@ public class GroupHelPer extends HelperBase {
     click(By.name("delete"));
   }
 
-  public void selectGroup() {
-      if (!wd.findElement(By.xpath("//div[@id='content']/form/span[1]/input")).isSelected()) {
-        click(By.xpath("//div[@id='content']/form/span[1]/input"));
-      }
+  public void selectGroup(int index) {
+    wd.findElements(By.name("selected[]")).get(index).click();
   }
 
   public void initGroupModification() {
@@ -69,5 +71,16 @@ public class GroupHelPer extends HelperBase {
 
   public int getGroupCount() {
      return wd.findElements(By.name("selected[]")).size();
+  }
+
+  public List<GroupData> getGroupList() {
+     List<GroupData> groups = new ArrayList<GroupData>();
+     List<WebElement> elements = wd.findElements(By.cssSelector("span.group"));
+     for (WebElement element : elements) {
+       String name = element.getText();
+       GroupData group = new GroupData(name, null, null);
+       groups.add(group);
+     }
+     return groups;
   }
 }
