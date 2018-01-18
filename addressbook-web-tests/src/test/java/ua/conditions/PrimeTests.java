@@ -1,4 +1,4 @@
-package tests;
+package ua.conditions;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;

@@ -31,7 +31,7 @@ public class ApplicationManager extends TestBase {
     } else if (Objects.equals(browser, BrowserType.IE)) {
       wd = new InternetExplorerDriver();
     }
-    wd.manage().timeouts().implicitlyWait(0, TimeUnit.SECONDS); // при проверке отсутствия элементов этот таймаут очень мешает
+    wd.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS); // при проверке отсутствия элементов этот таймаут очень мешает
     wd.get("http://localhost:8080/addressbook/");
     contactHelper = new ContactHelper(wd);
     groupHelPer = new GroupHelPer(wd);
